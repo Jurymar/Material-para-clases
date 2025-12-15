@@ -172,3 +172,14 @@ class MiClase {
 // - Puede recibir y retornar valores
 // - Se usa para callbacks, asincronía y transformación de datos
 // =====================================================
+
+
+// =====================================================
+// VARIOS EJERCICIOS DE CLOSURE
+// =====================================================
+
+// crear closure sin parametros
+
+
+
+

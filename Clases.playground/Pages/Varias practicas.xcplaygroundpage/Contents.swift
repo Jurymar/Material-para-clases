@@ -61,12 +61,70 @@ print("El perro tiene \(perro.numeroPatas) patas")
 
 
 //En este caso que se va a modificar el numero de patas de un animal, sin importar cual animal ,el numero de patas debe ser mutable, entonces  necesito que el atributo numeroDePAtas sea set,
+
+//Función que amputa una pata
 func amputarUnaPata(animal: Animal) {
-    var amputando =  animal
+
+    // 1️⃣ Los parámetros de una función son constantes (let) por defecto
+    //    Por eso NO podemos modificar directamente "animal"
+
+    // 2️⃣ Creamos una copia mutable del animal recibido
+    var amputando = animal
+
+    // 3️⃣ Swift primero lee el valor actual de numeroPatas
+    //    Luego le resta 1
+    //    Finalmente asigna el nuevo valor a la propiedad
+    //Aqui abajo estoy accediendo con mi variable amputando a numero de patas para mutarla
     amputando.numeroPatas = amputando.numeroPatas - 1
-    print("Listo ya amputamos el numero de patas \(amputando.numeroPatas) ")
+
+    // 4️⃣ Imprimimos el resultado final
+    print("Listo, ya amputamos el número de patas: \(amputando.numeroPatas)")
+    
+    
+    // yo necesito que mi propiedad numeroPatas sea seteable (set) para que me debe modificar el nuemero de patas
 }
-// yo necesito que mi propiedad numeroPatas sea seteable (set) para que me debe modificar el nuemero de patas
+
 
 amputarUnaPata(animal: perro)
 amputarUnaPata(animal: gato)
+
+
+//--------------------------------
+//CLOSURE
+//--------------------------------
+
+var saludo = ""
+
+func sumar(a: Int, b: Int) -> Int {
+    return a + b
+    
+}
+
+//declaracion del closure
+
+var suma: (Int, Int) -> Int = { (a, b) in
+    return a + b
+    
+}
+
+//el signo = separa una declaracion de una asignacion
+//despues del signo de apertura { ,estoy asignando una implementacion o valos del closure, osea lo que le estoy asignando a suma
+
+
+//CONTINUACION DEL EJERCICIO CON CLOSURE USANDO PROTOCOLO
+
+//Esta es una variable de tipo closure
+var amputar: (Animal, Int) -> Void = { (animal, numPatas) in
+    
+    var copia = animal
+    
+    copia.numeroPatas = copia.numeroPatas - numPatas
+    
+    print("Ahora el animal tiene \(copia.numeroPatas) patas.")
+}
+
+amputar(perro, 4)
+
+
+
+// Varios ejercicios de closure
