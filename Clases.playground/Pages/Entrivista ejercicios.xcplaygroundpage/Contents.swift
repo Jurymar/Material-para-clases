@@ -34,9 +34,8 @@
 //
 //
 //
-//
-//// Ejercicio 2 con array
-//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//// Ejercicio 2 con array -> Lista con datos quemados, Toogle, Button image del sistema//
 ////
 ////  ContentView.swift
 ////  ConsumirApi
@@ -96,8 +95,9 @@
 //    ContentView()
 //}
 //
-//
-////Ejercicio 2.1 sin array con UUID
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////Ejercicio 2.1 sin array con UUID, TextField, imagen local
 //
 //import SwiftUI
 //
@@ -154,8 +154,8 @@
 //#Preview {
 //    ContentView()
 //}
-//
-////ejercicio 2.3
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////ejercicio 2.3 - > desaparece button .disable, TextField
 //
 //import SwiftUI
 //
@@ -212,8 +212,9 @@
 //    ContentView()
 //}
 //
-//
-////Ejercicio 2.3
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////Ejercicio 2.3 ejercicio mas completo con todo lo anterior sin imagen,  con funcion, con  .confirmationDialog .alert
 //
 //
 //
@@ -346,3 +347,257 @@
 //#Preview {
 //    ContentView()
 //}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//EJERCICIO PARTE 1 CON API 
+
+//import SwiftUI
+//import Foundation
+//
+//struct Movie: Decodable, Identifiable {
+//    let id: Int
+//    let title: String
+//    let releaseDate: String
+//    let adult: Bool
+//
+//}
+//
+//struct MoviesApiResponse: Decodable {
+//    let page: Int
+//    let results: [Movie]
+//}
+//
+//struct ContentView: View {
+//
+//    @State var movies: [Movie] = []
+//    @State var cargando = false
+//
+//    let moviesApiURL = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=d4849d0d8592036d63a3e615d5439c28&language=es-ES&page=1")!
+//
+//    var body: some View {
+//
+//        NavigationStack {
+//            VStack {
+//                if cargando {
+//                    ProgressView()
+//                }
+//                List(movies) { movie in
+//                    NavigationLink(movie.title) {
+//                        Text(movie.title)
+//                        Text(movie.releaseDate)
+//                        //Text(movie.adult ? "Es para adulto" : "Todo publico")
+//
+//                        if movie.adult == true {
+//                            Text("Para adulto")
+//                        } else {
+//                            Text("Todo publico")
+//                        }
+//                    }
+//                }
+//            }
+//            .padding()
+//
+//            .task {
+//                cargando = true
+//                await fetchMovies(url: moviesApiURL)
+//                cargando = false
+//            }
+//        }
+//    }
+//
+//    func fetchMovies(url: URL) async {
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: url)
+//
+//            let decoder = JSONDecoder()
+//            decoder.keyDecodingStrategy = .convertFromSnakeCase
+//            let decodificarData = try decoder.decode(MoviesApiResponse.self, from: data)
+//            self.movies = decodificarData.results
+//
+//        }
+//        catch {
+//            print(error)
+//        }
+//    }
+//}
+//
+//#Preview {
+//    ContentView()
+//}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//EJERCICIO PARTE 2 con imagen y  .refreshable
+//
+//  ContentView.swift
+//  Movies
+//
+//  Created by Jurymar Colmenares on 14/04/26.
+//
+
+//import SwiftUI
+//import Foundation
+//
+//struct Movie: Decodable, Identifiable {
+//    let id: Int
+//    let title: String
+//    let poster_path: String
+//
+//    var posterURL: URL {
+//        URL(string: "https://image.tmdb.org/t/p/w300\(poster_path)")!
+//    }
+//}
+//
+//struct RespuestaJson: Decodable {
+//    let page: Int
+//    let results: [Movie]
+//}
+//
+//struct ContentView: View {
+//
+//    @State var movies: [Movie] = []
+//
+//    let urlApi = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=d4849d0d8592036d63a3e615d5439c28&language=es-ES&page=1")!
+//
+//    var body: some View {
+//
+//        NavigationStack {
+//            List(movies) { movie in
+//                NavigationLink.init {
+//                    VStack {
+//                        AsyncImage(url: movie.posterURL)
+//                    }
+//                    .navigationTitle(movie.title)
+//                } label: {
+//                    HStack {
+//                        AsyncImage(url: movie.posterURL) { result in
+//                                    result.image?
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                }
+//                                .frame(width: 60)
+//
+//                        Text(movie.title)
+//                    }
+//                }
+//            }
+//
+//        }
+//        .task {
+//            await fetchMovies(url: urlApi)
+//
+//        }
+//        .refreshable {
+//            await fetchMovies(url: urlApi)
+//        }
+//    }
+//
+//
+//    func fetchMovies(url: URL) async {
+//
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: url)
+//
+//            let dataDecodificada = try JSONDecoder().decode(RespuestaJson.self, from: data)
+//            self.movies = dataDecodificada.results
+//
+//        } catch {
+//            print(error)
+//        }
+//
+//    }
+//}
+//
+//#Preview {
+//    ContentView()
+//}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//EJERCICIO 3 CON MVVM y sin RespuestaJson osea es solo un array de Movie
+
+//Movie -> modelos
+//struct Movie: Decodable, Identifiable {
+//    let id: Int
+//    let title: String
+//}
+//
+//struct RespuestaJson: Decodable {
+//    let page: Int
+//    let results: [Movie]
+//}
+
+
+//MoviesViewModel -> llamada a API o logica de negocio
+//import Foundation
+//
+//@Observable
+//final class MoviesViewModel {
+//    var movies: [Movie] = []
+//    var errorMessage: String?
+//
+//    private let urlApi = URL(string: "https://jsonplaceholder.typicode.com/posts")!
+//
+//    func fetchMovies() async {
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: urlApi)
+//
+//            let dataDecodificada = try JSONDecoder().decode([Movie].self, from: data)
+//            self.movies = dataDecodificada
+//
+//        } catch {
+//            print(error)
+//            self.errorMessage = "Error: \(error.localizedDescription)"
+//        }
+//    }
+//}
+
+
+//ContentView -> vista que se alimenta de MoviesViewModel
+//import SwiftUI
+//import Foundation
+//
+//
+//struct ContentView: View {
+//
+//    @State var viewModel = MoviesViewModel()
+//
+//    var body: some View {
+//        NavigationStack {
+//
+//            if let errorMessageDesempaquetado = viewModel.errorMessage {
+//                Text(errorMessageDesempaquetado)
+//            }
+//
+//            List(viewModel.movies) { movie in
+//                NavigationLink(movie.title) {
+//                    Text(movie.title)
+//                }
+//            }
+//        }
+//
+//        .task {
+//            await viewModel.fetchMovies()
+//        }
+//
+//    }
+//
+//
+//}
+//
+//#Preview {
+//    ContentView()
+//}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
