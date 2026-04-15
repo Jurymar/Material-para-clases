@@ -7,6 +7,7 @@ import SwiftUI
 // Es como una función sin nombre.
 // =====================================================
 
+let closure: (() -> Void)?
 
 // =====================================================
 // 2️⃣ CLOSURE SIMPLE (SIN PARÁMETROS)
@@ -16,6 +17,8 @@ import SwiftUI
 let saludo = {
     print("Hola desde un closure")
 }
+
+
 
 // Ejecutamos el closure
 saludo()
@@ -179,6 +182,8 @@ class MiClase {
 // =====================================================
 
 // crear closure sin parametros
+
+
 
 
 

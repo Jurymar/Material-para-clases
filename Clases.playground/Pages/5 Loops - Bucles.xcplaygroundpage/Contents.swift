@@ -223,3 +223,20 @@ print("Mayores a 50: \(contadorMayor)")
  - enumerated() → índice + valor
  - _ → ignorar valor
  */
+
+
+//EJERCICIOS
+
+//FOR IN con Diccionario
+
+let edades1 = ["Ana": 15, "Luis": 17, "Carla": 24]
+
+for edad1 in edades1.values {
+    print(edad1)
+}
+   
+let edades2 = ["Ana": 15, "Luis": 17, "Carla": 24]
+
+for edad2 in edades2.keys {
+    print(edad2)
+}

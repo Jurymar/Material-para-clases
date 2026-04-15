@@ -168,11 +168,8 @@ var pais: String? = "Colombia"
 //--------------------------------------------------
 
 // Usamos if let para verificar si hay valor
-if let paisSeguro = pais {
-    print("El país es \(paisSeguro)")
-} else {
-    print("No hay país")
-}
+pais = nil
+print(pais)
 
 /*
  if let:
@@ -183,6 +180,7 @@ if let paisSeguro = pais {
  */
 
 
+
 //--------------------------------------------------
 // ✅ GUARD LET (MUY USADO EN SWIFTUI)
 //--------------------------------------------------
@@ -190,7 +188,7 @@ if let paisSeguro = pais {
 func mostrarCiudad(ciudad: String?) {
     guard let ciudadSegura = ciudad else {
         print("No hay ciudad")
-        return
+        return // siempre se usa return despues de else
     }
     
     print("La ciudad es \(ciudadSegura)")
@@ -234,3 +232,52 @@ print(paisPorDefecto)
  - if let / guard let → uso seguro
  - ?? → valor por defecto
  */
+
+
+
+//EJERCICIOS
+
+//Ejercicios de variables
+
+var name: String = "Pedro"
+print(name)
+
+name = "Clara"
+print(name)
+
+let pi1: Double = 3.14159
+print(pi1)
+
+
+//Ejercicios de opcionales
+
+//no se esta desempaquetando
+var raza: String? = "Dalmata"
+print(raza)
+
+//Force Unwrapping
+var tasas: String? = "10"
+print(tasas!)
+
+//Optional Binding (if let)
+var email: String? = "carol@gmail.com"
+var gmail: String? = nil
+
+if let emailDesempaquetado = email {
+    print(emailDesempaquetado)
+}
+
+//Guard let
+func correo(gmail: String?) {
+    guard let correoDesempaquetado = gmail else {
+        return
+    }
+    print(correoDesempaquetado)
+   
+}
+
+print(gmail ?? "invitado")
+
+//Nil Coalescing Operator
+var username: String? = nil
+print(username ?? "Sin datos")

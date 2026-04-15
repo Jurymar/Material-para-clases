@@ -41,7 +41,7 @@ struct ContentView: View {
 
 //✅los protocolos siempre son var , pero no significa que se pueden mutar , depende de los requerimientos ya que pueden ser
 //get -> que significa solo lestura
-//set -> que significa que se puede mutar
+//get set -> que significa que se puede mutar
 
 
 //Toda vista en SwiftUI debe tener un body que describa su contenido.

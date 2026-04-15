@@ -266,3 +266,31 @@ print(puedeEntrar(edad: 20, permiso: true))
  - Pueden tener nombre externo e interno
  - _ elimina la etiqueta externa
  */
+
+
+
+//EJERCICIOS
+
+//Imprimir un array
+
+func imprimeArray(_ nombres: [String]) {
+    for nombre in nombres {
+        print(nombre)
+    }
+}
+ 
+let array = ["Ana", "Perla", "Escarlata"]
+imprimeArray(array)
+
+
+
+
+func imprimirNumeros(_ numeros: [Int]) {
+    for numero in numeros {
+        print(numero)
+    }
+}
+
+let array1 = [1, 2, 3, 4]
+imprimirNumeros(array1)
+

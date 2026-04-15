@@ -1,5 +1,7 @@
 import Foundation
 
+//🧩EJERCICIO 1
+
 // =====================================================
 // PROTOCOLOS
 // =====================================================
@@ -88,6 +90,8 @@ print("La paloma tiene \(paloma.numeroPatas) patas")
 // 👉 aunque la instancia sea let,
 // sus propiedades SI se pueden mutar
 let gato = Gato()
+
+
 print("El gato tiene \(gato.numeroPatas) patas")
 
 gato.numeroPatas = 8
@@ -241,3 +245,64 @@ amputar?(perro, 4)
 
 
 //amputar(perro, 4)
+
+
+//crear un closure de array Animal, que retorne la cantidad de patas de todos los animales
+
+var cantidadPatas: ([Animal]) -> Int = { animales in
+     
+    var patas = 0
+    
+    for animal in animales {
+        patas += animal.numeroPatas
+    }
+    return patas
+}
+
+let misAnimales: [Animal] = [perro, paloma, gato]
+
+let resultado = cantidadPatas(misAnimales)
+print(resultado)
+
+
+
+//🧩EJERCICIO 2
+
+//tipo abtracto
+protocol Carro {
+    var numCauchos: Int { get }
+}
+
+//tipo concreto
+struct Duster: Carro {
+    var numCauchos = 4
+}
+
+struct Camaleon: Carro {
+    var numCauchos = 6
+}
+
+let duster = Duster()
+print("La Duster tiene \(duster.numCauchos) cauchos")
+
+let camaleon = Camaleon()
+print(print("La Camaleon tiene \(camaleon.numCauchos) cauchos")
+)
+
+// Crear un closure que, dado un array de Carro, retorne la suma de numCauchos
+//Este closure recibe por parametros un array de Carros (recibe las instancias de Carro)
+let obtenerNumeroCauchos: ([Carro]) -> Int = { carros in
+    var total = 0
+    for carro in carros {
+        total += carro.numCauchos
+    }
+    return total
+}
+
+let resul = obtenerNumeroCauchos([duster, camaleon])
+
+print(resul)
+
+
+
+//🧩EJERCICIO 3

@@ -43,7 +43,7 @@ class Gato {
 
 var perro = Perro()
 print("El perro tiene \(perro.numeroPatas) patas")
-var referenciaDePerro = perro // Creamos una copia del perro, cuqluier cambio sobre la copia, afecta solo a la copia.
+var referenciaDePerro = perro // Creamos una copia del perro, cualquier cambio sobre la copia, afecta solo a la copia.
 referenciaDePerro.numeroPatas = 5
 print("El perro viejo ahora tiene \(perro.numeroPatas) patas")
 print("El perro nuevo ahora tiene \(referenciaDePerro.numeroPatas) patas")
@@ -60,3 +60,12 @@ print("El Gato nuevo ahora tiene \(referenciaDeGato.numeroPatas) patas")
 
 
 //ENUMS
+
+
+
+//Ejercicios
+
+class Pais {
+    let ciudad = "Caracas"
+}
+

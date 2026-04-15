@@ -14,7 +14,7 @@ import Foundation
 
 //Solo se pueden usar en: struct y class, (No en enum).
 
-// Esta variable tiene un valos asignado.
+// Esta variable tiene un valor asignado.
 var greeting = "Hello, playground"
 
 //Ejemplo
