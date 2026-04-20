@@ -34,84 +34,17 @@ palabraExisteEnArray(palabraExiste: "casa")
 //palabraExisteEnArray(palabraVerificar: "hola")
 //palabraExisteEnArray(palabraVerificar: "perro")
 
-//1
-class Saludo {
-    var nombre: String
-    
-    init(nombre: String) {
-        self.nombre = nombre
-    }
-    
-    func saludar() {
-        print("Hola \(nombre)")
-    }
-}
+//🔹 OPCIONALES EJERCICIOS
+//1- Dado un String?, imprime su valor solo si no es nil usando if let.
 
-let saludo = Saludo(nombre: "Lara")
-saludo.saludar()
-
-
-//2
-let numeros = [1, 2, 3, 4]
-
-for numero in numeros.reversed() {
-    print(numero)
-    
-}
-
-
-//3
-func sumar(a: Int, b: Int) -> Int {
-    return a + b
-}
-
-print(sumar(a: 10, b: 3))
-
-
-//4
-var nombre: String? = "Jury"
+let nombre: String? = "Carla"
 
 if let nombreDesempaquetado = nombre {
     print(nombreDesempaquetado)
 }
 
-
-//5
-struct Usuario {
-    var nombre: String
-    var edad: Int
-}
-
-var usuario = Usuario(nombre: "Clara", edad: 31)
-usuario.nombre = "Pablo"
-
-//6
-
-var nombres = ["Lara", "Carla", "Lira"]
-
-nombres.append("Kori")
-nombres.remove(at: 1)
-
-for nombre in nombres {
-    print(nombre)
-}
+//2- Crea una función que reciba un Int? y use guard let para validar que no sea nil.
 
 
-var edades = ["Ana": 20, "Pedro": 60]
 
-
-func sumar(numeros: [Int]) -> Int {
-    var suma = 0
-    
-    for numero in numeros {
-        
-        suma = suma + numero
-    }
-    
-    return suma
-}
-
-let array = [2, 4, 5]
-let llamafunc = sumar(numeros: array)
-
-print(llamafunc)
+//3- Dado dos opcionales (nombre y edad), imprime ambos valores solo si los dos existen.

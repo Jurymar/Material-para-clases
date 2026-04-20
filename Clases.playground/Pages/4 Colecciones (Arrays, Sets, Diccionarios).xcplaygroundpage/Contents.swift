@@ -584,7 +584,7 @@ let llamarFuncion = nombreMasLargo(nombres: array)
 print(llamarFuncion)
 
 
-//Cual nombre es mas largo
+//Cual nombre es mas largo sin funcion
 let names3 = ["Ana", "Sebastián", "Luis", "María", "Artemisares"]
 
 var guardaname = ""
@@ -596,6 +596,27 @@ for name in names3 {
 }
 print("El nombre mas largo es \(guardaname)")
 
+
+//Buscar palabras mayor a 4 letras
+func buscaPalabraMayor4Letraas(palabras: [String]) -> [String] {
+    
+    var palabrasMayorA4: [String] = []
+    
+    for palabra in palabras {
+        
+        if palabra.count > 6 {
+            palabrasMayorA4.append(palabra)
+        }
+    }
+    
+    return palabrasMayorA4
+    
+}
+
+let arry = ["Clara", "Esteplania", "Cataraban"]
+let llamoFunc = buscaPalabraMayor4Letraas(palabras: arry)
+
+print(llamoFunc)
 
 
 //🧩Mostrar un nuevo array pero con los nombres convertidos a mayuscula
@@ -631,3 +652,106 @@ if palindromo(palabra2: palabra) {
 } else {
     print ("\(palabra) no es palindromo")
 }
+
+
+//Palabras mayor a 4 letras
+let names4 = ["Esperanza", "Arana", "Leo"]
+
+for name in names4 {
+    if name.count > 4 {
+        print(name)
+    }
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//EJERCICIOS SENCILLOS
+
+
+//1.    Dado un array de números, imprime cada número usando for in.
+let numeros6: [Int] = [2, 6, 9, 1]
+
+for numero in numeros6 {
+    print(numero)
+}
+
+//Con .map
+let imprimir = numeros6.map { $0 }
+print(imprimir)
+
+
+//2 Dado un array, ordénalo de menor a mayor y de mayor a menor
+
+// Ordenar Int y String de mayor a menor y de menor a mayor con sorted()
+
+//Ordenar de menor a mayor
+let numeros4 = [6, 4, 5, 2]
+
+let ordenar = numeros4.sorted()
+print(ordenar)
+
+let alfabeto = ["b", "c", "a", "d", "f", "e"]
+
+let ordenar1 = alfabeto.sorted()
+print(ordenar1)
+
+
+//Ordenar de mayor a menor
+
+let ordenarDeMAyorAMenor = numeros4.sorted { $0 > $1 }
+print(ordenarDeMAyorAMenor)
+
+let ordenarDec = alfabeto.sorted { $0 > $1 }
+print(ordenarDec)
+
+//3.    Dado un array [1,2,3,4,5,6], obtén solo los números pares usando for in.
+
+let numeros0 = [1, 2, 3, 4, 5, 6]
+
+var numeroPares1: [Int] = []
+
+for numero0 in numeros0 {
+    
+    if numero0 % 2 == 0 {
+        numeroPares1.append(numero0)
+    }
+}
+
+print(numeroPares1)
+
+//4.    Dado un array [1,2,3,4,5,6], obtén solo los números pares usando filter.
+
+let numerosPares = numeros0.filter { $0 % 2 == 0}
+print(numerosPares)
+
+//5.    Dado un array [1,2,3,4,5], calcula la suma total usando for in.
+
+let nums1 = [1,2,3,4,5]
+
+var suma1 = 0
+
+for num6 in nums1 {
+    suma1 += num6
+}
+print(suma1)
+
+//6.    Dado un array [1,2,3,4,5], calcula la suma total usando reduce.
+
+let sumaTotal = nums1.reduce(0) { $0 + $1 }
+print(sumaTotal)
+
+//9.    Dado un array [1,2,2,3,4,4,5], elimina los elementos duplicados.
+
+let nums = [1,2,2,3,4,4,5]
+
+let sinDuplicados = Array(Set(nums))
+print(sinDuplicados)
+
+//10.    Dado un array de Strings ["a","b","a","c"], elimina los duplicados.
+
+let letras = ["a","b","a","c"]
+
+let eliminarDuplicados = Array(Set(letras))
+print(eliminarDuplicados)

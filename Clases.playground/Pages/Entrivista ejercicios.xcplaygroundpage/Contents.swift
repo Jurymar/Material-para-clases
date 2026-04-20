@@ -601,3 +601,169 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+// llamada a API con Imagen, enum, computed properti, MVVM, lista con label, piker
+
+//Movie
+
+//import Foundation
+//
+//struct Movie: Decodable, Identifiable {
+//    let id: Int
+//    let title: String
+//    let poster_path: String
+//    let overview: String
+//    let adult: Bool
+//    let vote_average: Double
+//    let vote_count: Int
+//    
+//    var posterURL: URL {
+//        URL(string: "https://image.tmdb.org/t/p/w300\(poster_path)")!
+//    }
+//}
+//
+//struct RespuestaJson: Decodable {
+//    let page: Int
+//    let results: [Movie]
+//}
+
+
+//TextosViewModel
+
+////
+//import Foundation
+//
+//@Observable
+//
+//final class MovieViewModel {
+//    
+//    var movies: [Movie] = []
+//    
+//    var idioma: Idioma = .espanol
+//    
+//    private var apiLanguage: String {
+//        switch idioma {
+//        case .espanol:
+//            return "es-Es"
+//        case .ingles:
+//            return "en-Us"
+//        }
+//    }
+//    
+//    private var urlApi: URL {
+//        return URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=d4849d0d8592036d63a3e615d5439c28&language=\(apiLanguage)&page=1")!
+//    }
+//    
+//    
+//    func fetchMovie() async {
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: urlApi)
+//            let decodificarJson = try JSONDecoder().decode(RespuestaJson.self, from: data)
+//            self.movies = decodificarJson.results
+//            
+//        } catch {
+//            print(error)
+//        }
+//    }
+//}
+//
+//
+//
+//
+//  ContentView.swift
+
+//  Movies
+//
+//  Created by Jurymar Colmenares on 14/04/26.
+//
+
+//import SwiftUI
+//import Foundation
+//
+//struct ContentView: View {
+//    
+//    @State var viewModel = MovieViewModel()
+//    
+//    var body: some View {
+//        
+//        NavigationStack {
+//            
+//            VStack {
+//                Picker("Idioma", selection: $viewModel.idioma) {
+//                    Text("Español")
+//                        .tag(Idioma.espanol)
+//                    
+//                    Text("Ingles")
+//                        .tag(Idioma.ingles)
+//                }
+//                .pickerStyle(.segmented)
+//                .onChange(of: viewModel.idioma) {
+//                    Task {
+//                        await viewModel.fetchMovie()
+//                    }
+//                }
+//                
+//                List(viewModel.movies) { movie in
+//                    
+//                    NavigationLink {
+//                        ScrollView {
+//                            VStack {
+//                                AsyncImage(url: movie.posterURL)
+//                                Text(movie.overview)
+//                            }
+//                        }
+//                        .navigationTitle(movie.title)
+//                    } label: {
+//                        HStack {
+//                            AsyncImage(url: movie.posterURL) { result in
+//                                result.image?
+//                                    .resizable()
+//                                    .scaledToFit()
+//                            }
+//                            .frame(width: 60)
+//                            
+//                            VStack(alignment: .leading) {
+//                                Text(movie.title)
+//                                
+//                                Text("Puntuacion: \(Int(movie.vote_average))")
+//                                
+//                                if movie.adult {
+//                                    Text("Contenido adulto")
+//                                } else {
+//                                    Text("Contenido Familiar")
+//                                }
+//                            }
+//                            
+//                            
+//                        }
+//                    }
+//                }
+//            }
+//            .padding()
+//            .task {
+//                await viewModel.fetchMovie()
+//            }
+//
+//        }
+//    }
+//    
+//       
+//    
+//}
+//        
+//#Preview {
+//    ContentView()
+//}
+//
+//
+//
+//Idioma.swift
+
+//enum Idioma: String, CaseIterable, Identifiable {
+//    case espanol
+//    case ingles
+//    
+//    var id: Self { self }
+//}
+//
