@@ -48,3 +48,14 @@ if let nombreDesempaquetado = nombre {
 
 
 //3- Dado dos opcionales (nombre y edad), imprime ambos valores solo si los dos existen.
+
+
+
+let name = "Ana" // Palindromo
+
+let numeros = [2, 4, 1, 7]
+
+var pares = numeros.filter { $0 % 2 == 0 }
+print(pares)
+
+
